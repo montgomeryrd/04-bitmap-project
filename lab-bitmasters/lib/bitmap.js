@@ -7,6 +7,6 @@ module.exports = function(buffer) {
     this.offset = buffer.readUInt32LE(10)
     this.width = buffer.readUInt32LE(18)
     this.height = buffer.readUInt32LE(22)
-    this.colorTable = buffer.slice(54, this.offset)
-    this.pixelArray = buffer.slice(this.offset)
+    this.colorTable = buffer.slice(54, this.offset) // 54 to 1078 bit for offset
+    this.pixelArray = buffer.slice(this.offset) // 1078 to 
 }
