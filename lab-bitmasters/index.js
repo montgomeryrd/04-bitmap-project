@@ -4,15 +4,17 @@ const fs = require('fs');
 const Bmp = require('./lib/bitmap');
 const transform = module.exports = {};
 
-let type = process.argv[2];
 
-transform.image = function() {
+
+transform.image = function(inputs) {
+    if(!inputs) return null;
+
+    let type = inputs;
     fs.readFile('./__test__/asset/bitmap.bmp', (err, data) => {
         let bmp = new Bmp(data);
         
         if (type === 'reverse') { //flip horizontal and vertical
             bmp.pixelArray.reverse();
-            // console.log(bmp.pixelArray);
         } else if (type === 'fliph') {
             let pixelArrayRows = [];
             for (let i = 0; i < 9900; i+=100){
@@ -29,17 +31,19 @@ transform.image = function() {
             }
         } else {
             //no transform
+            return null;
         }
         
 
         fs.writeFile('./__test__/asset/bitmaprewrite.bmp', bmp.allData, (err) => {
             if (err) console.error(err);
             console.log('Image saved');
-            console.log(bmp.allData);
+            // console.log(bmp.allData);
         });
         // console.log(bmp.pixelArray);
         // console.log(bmp.colorTable);
     });
+    return type;
 };
 
-transform.image();
+transform.image(process.argv[2]);
