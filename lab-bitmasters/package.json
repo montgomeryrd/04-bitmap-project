@@ -17,7 +17,8 @@
     "url": "https://github.com/montgomeryrd/04-bitmap-project/issues"
   },
   "homepage": "https://github.com/montgomeryrd/04-bitmap-project#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "jest": "^22.1.4"
   }
 }
